@@ -62,6 +62,11 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
 
+  def upload_image
+    @user = User.find(params[:id])
+    render "/users/#{@user.id}/edit"
+  end
+
   private
 
     def user_params

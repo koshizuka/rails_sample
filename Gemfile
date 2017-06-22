@@ -14,6 +14,7 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'haml-rails'
 gem 'erb2haml'
+gem 'jquery-turbolinks'
 gem 'dropzonejs-rails'
 
 group :assets do

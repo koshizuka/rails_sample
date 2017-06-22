@@ -32,7 +32,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    binding.pry
     @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:success] = "Profile updated"
@@ -64,7 +63,8 @@ class UsersController < ApplicationController
 
   def upload_image
     @user = User.find(params[:id])
-    render "/users/#{@user.id}/edit"
+    @user.update_attribute(:image, params[:file])
+    render status: 200, json: @user, nothing: true
   end
 
   private

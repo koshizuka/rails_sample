@@ -17,7 +17,7 @@ describe User do
   it { should respond_to(:remember_token) }
   it { should respond_to(:authenticate) }
   it { should respond_to(:admin) }
-  it { should respond_to(:task) }
+  it { should respond_to(:tasks) }
   it { should respond_to(:feed) }
   it { should respond_to(:relationships) }
   it { should respond_to(:followed_users) }
@@ -135,15 +135,15 @@ describe User do
     end
 
     it "should have the right task in the right order" do
-      expect(@user.task.to_a).to eq [newer_task, older_task]
+      expect(@user.tasks.to_a).to eq [newer_task, older_task]
     end
 
     it "should destroy associated task" do
-      task = @user.task.to_a
+      tasks = @user.tasks.to_a
       @user.destroy
-      expect(task).not_to be_empty
-      task.each do |task|
-        expect(task.where(id: task.id)).to be_empty
+      expect(tasks).not_to be_empty
+      tasks.each do |task|
+        expect(Task.where(id: task.id)).to be_empty
       end
     end
 
@@ -155,14 +155,14 @@ describe User do
 
       before do
         @user.follow!(followed_user)
-        3.times { followed_user.task.create!(content: "Lorem ipsum") }
+        3.times { followed_user.tasks.create!(content: "Lorem ipsum") }
       end
 
       its(:feed) { should include(newer_task) }
       its(:feed) { should include(older_task) }
       its(:feed) { should_not include(unfollowed_post) }
       its(:feed) do
-        followed_user.task.each do |task|
+        followed_user.tasks.each do |task|
           should include(task)
         end
       end

@@ -5,7 +5,7 @@ describe Task do
   let(:user) { FactoryGirl.create(:user) }
   before do
     # This code is not idiomatically correct.
-    @task = task.new(content: "Lorem ipsum", user_id: user.id)
+    @task = Task.new(content: "Lorem ipsum", user_id: user.id)
   end
 
   subject { @task }

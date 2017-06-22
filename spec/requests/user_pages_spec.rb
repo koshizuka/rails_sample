@@ -169,11 +169,10 @@ describe "User pages" do
     describe "page" do
       it { should have_content("Update your profile") }
       it { should have_title("Edit user") }
-      it { should have_link('change', href: 'http://gravatar.com/emails') }
     end
 
     describe "with invalid information" do
-      before { click_button "Save changes" }
+      before { click_button "保存する" }
 
       it { should have_content('error') }
     end
@@ -186,7 +185,7 @@ describe "User pages" do
         fill_in "Email",            with: new_email
         fill_in "Password",         with: user.password
         fill_in "Confirm Password", with: user.password
-        click_button "Save changes"
+        click_button "保存する"
       end
 
       it { should have_title(new_name) }

@@ -1,8 +1,8 @@
 %li
-  %span.content= micropost.content
+  %span.content= task.content
   %span.timestamp
-    Posted #{time_ago_in_words(micropost.created_at)} ago.
-  - if current_user?(micropost.user)
-    = link_to "delete", micropost, method: :delete, |
+    Posted #{time_ago_in_words(task.created_at)} ago.
+  - if current_user?(task.user)
+    = link_to "delete", task, method: :delete, |
       data: { confirm: "You sure?" },               |
-      title: micropost.content                      |
+      title: task.content                      |

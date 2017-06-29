@@ -3,6 +3,8 @@
   %span.user
     = link_to feed_item.user.name, feed_item.user
   %span.content= feed_item.content
+  .btn-change-status
+    = button_to status_action(feed_item), change_status_task_path(feed_item), class: "btn btn-large btn-primary"
   %span.timestamp
     Posted #{time_ago_in_words(feed_item.created_at)} ago.
   - if current_user?(feed_item.user)

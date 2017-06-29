@@ -5,6 +5,11 @@ SampleApp::Application.routes.draw do
       post :upload_image
     end
   end
+  resources :tasks do
+    member do
+      post :change_status
+    end
+  end
   resources :sessions,      only: [:new, :create, :destroy]
   resources :tasks,    only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]

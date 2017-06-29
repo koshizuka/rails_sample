@@ -13,6 +13,17 @@ class TasksController < ApplicationController
     end
   end
 
+  def change_status
+    @task = Task.find_by(id: params[:id])
+    if @task.not_started?
+      @task.start
+    elsif @task.working?
+      @task.finish
+    end
+    @task.save
+    redirect_to root_url
+  end
+
   def destroy
     @task.destroy
     redirect_to root_url

@@ -1,10 +1,11 @@
 %body
-  %header.navbar.navbar-fixed-top.navbar-inverse
-    .navbar-inner
+  %header
+    .navbar.navbar-default.navbar-fixed-top
       .container
-        = link_to "たすくくん", root_path, id: "logo"
-        %nav
-          %ul.nav.pull-right
+        .navbar-header
+          = link_to "たすくくん", root_path, class: "navbar-brand"
+        %nav.navbar-collapse.collapse
+          %ul.nav.navbar-nav
             %li= link_to "Home", root_path
             %li= link_to "Help", help_path
             - if signed_in?

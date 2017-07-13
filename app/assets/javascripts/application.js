@@ -13,7 +13,6 @@
 
 //= require jquery
 //= require jquery_ujs
-//= require _honoka
 //= require _honoka.min
 //= require jquery-fileupload/basic
 //= require dropzone

@@ -4,10 +4,10 @@
     = link_to feed_item.user.name, feed_item.user
   %span.content= feed_item.content
   .btn-change-status
-    = button_to status_action(feed_item), change_status_task_path(feed_item), class: "btn btn-large btn-info"
+    / = button_to status_action(feed_item), change_status_project_task_path(feed_item), class: "btn btn-large btn-info"
   %span.timestamp
     Posted #{time_ago_in_words(feed_item.created_at)} ago.
   - if current_user?(feed_item.user)
     = link_to "delete", feed_item, method: :delete, |
       data: { confirm: "You sure?" },               |
-      title: feed_item.content                      |
+      title: feed_item.content

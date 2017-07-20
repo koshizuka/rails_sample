@@ -1,15 +1,18 @@
 SampleApp::Application.routes.draw do
+  resources :projects do
+    resources :tasks do
+      member do
+        post :change_status
+      end
+    end
+  end
   resources :users do
     member do
       get :following, :followers
       post :upload_image
     end
   end
-  resources :tasks do
-    member do
-      post :change_status
-    end
-  end
+
   resources :sessions,      only: [:new, :create, :destroy]
   resources :tasks,    only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]

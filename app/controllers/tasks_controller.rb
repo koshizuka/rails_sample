@@ -2,11 +2,14 @@ class TasksController < ApplicationController
   before_action :signed_in_user, only: [:create, :destroy]
   before_action :correct_user,   only: :destroy
 
+  def new
+  end
+
   def create
     @task = current_user.tasks.build(task_params)
     if @task.save
       flash[:success] = "Task created!"
-      redirect_to root_url
+      redirect_to project_path(@task.project_id)
     else
       @feed_items = []
       render 'static_pages/home'
@@ -32,7 +35,7 @@ class TasksController < ApplicationController
   private
 
     def task_params
-      params.require(:task).permit(:content)
+      params.require(:task).permit(:content, :project_id)
     end
 
     def correct_user

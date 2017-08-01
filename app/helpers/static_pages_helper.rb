@@ -1,11 +1,11 @@
 module StaticPagesHelper
   def status_action(feed_item)
     if feed_item.not_started?
-      "はじめる"
+      "開始"
     elsif feed_item.working?
-      "おわらせる"
+      "完了"
     else
-      "おわってる"
+      "保留"
     end
   end
 end

@@ -8,7 +8,7 @@ class TasksController < ApplicationController
   def create
     @task = current_user.tasks.build(task_params)
     if @task.save
-      flash[:success] = "Task created!"
+      flash[:success] = "タスクを登録しました！"
       redirect_to project_path(@task.project_id)
     else
       @feed_items = []
@@ -18,13 +18,14 @@ class TasksController < ApplicationController
 
   def change_status
     @task = Task.find_by(id: params[:id])
+    @project = Project.find_by(id: params[:project_id])
     if @task.not_started?
       @task.start
     elsif @task.working?
       @task.finish
     end
     @task.save
-    redirect_to root_url
+    redirect_to project_path(@project)
   end
 
   def destroy

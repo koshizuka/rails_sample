@@ -1,6 +1,3 @@
-// Place all the styles related to the StaticPages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
 .btn-change-status {
 
 }
@@ -8,5 +5,42 @@
   margin: 0 auto;
 }
 .container {
-padding: 15px;
+  padding: 15px;
 }
+
+.col-user {
+  text-align: center;
+}
+
+.user-name {
+  text-align: center;
+  /*display: block;*/
+}
+
+.task_table_head {
+  background: #7A5A74;
+  color: #FCFCFC;
+  font-size: 12px;
+}
+
+.table {
+  background: #fff
+}
+
+.task_table_head > th {
+  text-align: center;
+  line-height: 1;
+}
+
+.task_table > tbody > tr > td {
+  padding: 5px;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+
+.chart {
+  border-left: 1px solid #DDD;
+  border-right: 1px solid #DDD;
+}
+

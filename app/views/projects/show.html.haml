@@ -1,24 +1,46 @@
 %p#notice= notice
 
-%p
-  %b Name:
-  = @project.name
-%p
-  %b Task:
-  = @project.tasks
+/ %p
+/   %b プロジェクト名
+/   = @project.name
 
-= link_to 'Edit', edit_project_path(@project)
-\|
-= link_to 'Back', projects_path
+- if @feed_items.any?
+  %h3 タスク一覧
+  %table.table.task_table
+    %thead
+      %tr.task_table_head
+        %th.center-block.col-xs-1 担当者
+        %th.col-xs-2 内容
+        %th.col-xs-1
+        .col-xs-8
+        %th
+        %th
+        %th
+        %th
+        %th
+        %th
+        %th
+        %th
+        %th
+        %th
+        %th
+        %th
+        %th
+        %th
+        %th
+        %th
+        %th
+        %th
+        %th
+        %th
+    %tbody
+      = render partial: 'shared/feed_item', collection: @feed_items
+  = will_paginate @feed_items
 
 = form_for @task, project_id: @project.id do |f|
   = render 'shared/error_messages', object: f.object
-  .field
-    = f.text_area :content, placeholder: "Compose new task..."
-  = f.hidden_field :project_id, value: @project.id
-  = f.submit "登録する", class: "btn btn-large btn-primary"
-
-- if @feed_items.any?
-  %ol.tasks
-    = render partial: 'shared/feed_item', collection: @feed_items
-  = will_paginate @feed_items
+  .form-group
+    = f.text_area :content, placeholder: "タスクを入力してください", class: "form-control"
+  .form-group
+    = f.hidden_field :project_id, value: @project.id
+    = f.submit "登録する", class: "btn btn-primary pull-right"

@@ -1,13 +1,37 @@
-%li{:id => "#{feed_item.id}"}
-  = image_tag current_user.image, class: "thumnail"
-  %span.user
-    = link_to feed_item.user.name, feed_item.user
-  %span.content= feed_item.content
-  .btn-change-status
-    / = button_to status_action(feed_item), change_status_project_task_path(feed_item), class: "btn btn-large btn-info"
-  %span.timestamp
-    Posted #{time_ago_in_words(feed_item.created_at)} ago.
-  - if current_user?(feed_item.user)
-    = link_to "delete", feed_item, method: :delete, |
-      data: { confirm: "You sure?" },               |
-      title: feed_item.content
+/ %li.row{:id => "#{feed_item.id}"}
+%tr
+  %td.col-xs-1
+    / = image_tag current_user.image, class: "thumnail"
+    .user-name
+      = link_to feed_item.user.name, feed_item.user
+  %td.col-xs-2
+    %span.content= feed_item.content
+  %td.col-xs-1
+    = button_to status_action(feed_item), change_status_project_task_path(id: feed_item.id, project_id: @project.id), class: "btn btn-sm btn-info pull-right"
+  .col-xs-8
+    %td.chart
+    %td.chart
+    %td.chart
+    %td.chart
+    %td.chart
+    %td.chart
+    %td.chart
+    %td.chart
+    %td.chart
+    %td.chart
+    %td.chart
+    %td.chart
+    %td.chart
+    %td.chart
+    %td.chart
+    %td.chart
+    %td.chart
+    %td.chart
+    %td.chart
+    %td.chart
+    / %span.timestamp
+    /   Posted #{time_ago_in_words(feed_item.created_at)} ago.
+    / - if current_user?(feed_item.user)
+    /   = link_to "削除", feed_item, method: :delete, |
+    /     data: { confirm: "You sure?" },               |
+    /     title: feed_item.content

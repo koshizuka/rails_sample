@@ -14,6 +14,13 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'haml-rails'
 gem 'erb2haml'
+gem 'jquery-turbolinks'
+gem 'dropzonejs-rails'
+gem 'aasm'
+
+group :assets do
+  gem 'jquery-fileupload-rails'
+end
 
 group :development, :test do
   gem 'sqlite3'

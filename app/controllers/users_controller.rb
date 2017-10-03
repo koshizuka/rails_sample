@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @microposts = @user.microposts.paginate(page: params[:page])
+    @tasks = @user.tasks.paginate(page: params[:page])
   end
 
   def new
@@ -32,7 +32,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    binding.pry
     @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:success] = "Profile updated"
@@ -60,6 +59,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @users = @user.followers.paginate(page: params[:page])
     render 'show_follow'
+  end
+
+  def upload_image
+    @user = User.find(params[:id])
+    @user.update_attribute(:image, params[:file])
+    render status: 200, json: @user, nothing: true
   end
 
   private

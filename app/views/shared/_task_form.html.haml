@@ -1,0 +1,5 @@
+= form_for(@task) do |f|
+  = render 'shared/error_messages', object: f.object
+  .field
+    = f.text_area :content, placeholder: "Compose new task..."
+  = f.submit "登録する", class: "btn btn-large btn-primary"

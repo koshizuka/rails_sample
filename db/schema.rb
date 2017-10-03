@@ -11,16 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170525020932) do
+ActiveRecord::Schema.define(version: 20170914025504) do
 
-  create_table "microposts", force: :cascade do |t|
-    t.string   "content"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "dailies", force: :cascade do |t|
+    t.integer  "planed_time"
+    t.integer  "actual_time"
+    t.date     "the_date"
+    t.integer  "task_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
-  add_index "microposts", ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
+  create_table "projects", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.date     "start_date"
+  end
 
   create_table "relationships", force: :cascade do |t|
     t.integer  "follower_id"
@@ -32,6 +39,21 @@ ActiveRecord::Schema.define(version: 20170525020932) do
   add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id"
   add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
   add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id"
+
+  create_table "tasks", force: :cascade do |t|
+    t.string   "content"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "status"
+    t.integer  "project_id"
+    t.integer  "planed_time"
+    t.integer  "actual_time"
+    t.integer  "order"
+  end
+
+  add_index "tasks", ["project_id"], name: "index_tasks_on_project_id"
+  add_index "tasks", ["user_id", "created_at"], name: "index_tasks_on_user_id_and_created_at"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

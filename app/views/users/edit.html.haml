@@ -12,8 +12,8 @@
       = f.password_field :password
       = f.label :password_confirmation, "Confirm Password"
       = f.password_field :password_confirmation
-      = gravatar_for @user
-      .file_upload.square_btn
-        = f.label "ファイルを選択"
-        = f.file_field :image
-      = f.submit "Save changes", class: "btn btn-large btn-primary"
+
+      = f.submit "保存する", class: "btn btn-large btn-primary"
+    = form_tag(upload_image_user_path, class: 'dropzone', id: 'upload-dropzone') do
+      .fallback
+        = file_field_tag 'attachment[file]'

@@ -1,3 +1,152 @@
-// Place all the styles related to the StaticPages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.btn-change-status {
+}
+.navbar .nav .dropdown-toggle .caret {
+  margin: 0 auto;
+}
+.container {
+  padding: 15px;
+}
+
+.col-user {
+  text-align: center;
+}
+
+.user-name {
+  margin: 0px;
+  text-align: center;
+  /*display: block;*/
+}
+
+.status{
+  border-right: 3px solid #D8D4D4;
+}
+
+.table_scroll {
+  width: 760px;
+  overflow-x: scroll;
+}
+
+.task_table_head {
+  background: #7A5A74;
+  color: #FCFCFC;
+  width: 1200px;
+  height: 40px;
+  font-size: 12px;
+}
+
+.scroll_div {
+  width: 1200px;
+}
+
+/*.task_td:before {
+  content: "あ";
+  background: green;
+}*/
+
+.table {
+  background: #fff
+}
+
+.task_table_head > th {
+  text-align: center;
+}
+
+.task_table_head {
+  height: 22px;
+}
+
+.task_table_head > .user-name {
+  margin: 0;
+  min-width: 80px;
+}
+
+.task_table_head > .ticket-name {
+  min-width: 200px;
+}
+
+
+.task_table_head > .date {
+  padding: 0 2px;
+  height: 3px;
+  font-weight: lighter;
+  vertical-align: middle;
+}
+
+.task_table_head > .day_of_week{
+  border-top: 1px solid #9B7A95;
+  padding: 0 2px;
+  height: 1px;
+  font-weight: lighter;
+  vertical-align: middle;
+}
+
+.task_table_head > .date:not(:first-child), .task_table_head > .day_of_week:not(:first-child){
+  border-left: 1px solid #9B7A95;
+}
+
+.task_table_head > th .date{
+  text-align: center;
+  height: 35px;
+  min-width: 38px;
+}
+
+.task_table {
+  width: 1200px;
+}
+
+.table_scroll > .task_table > tbody > tr > td {
+  background: #FCF9F9;
+}
+
+.task_table > tbody > tr > td {
+  padding: 3px 0;
+  vertical-align: middle;
+  line-height: 1;
+  height: 30px;
+  width: 38px;
+}
+
+.chart {
+  border-left: 1px solid #DDD;
+  border-right: 1px solid #DDD;
+  padding: none
+}
+
+.chart:first-child{
+  border-left: none;
+}
+
+.working {
+  background: #FFF2F5;
+}
+
+.done {
+  background: #F2EFF0;
+}
+
+.plan {
+  width: 100%;
+  height: 23px;
+  background: #DBF0F9;
+}
+
+.actual {
+  width: 100%;
+  height: 23px;
+  background: #F2C9D1;
+}
+
+/*.btn-task-form {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0 1px 2px 0;
+  appearance: none;
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  color: white;
+  background: #EF4A9D;
+  border-radius: 45px;
+}*/

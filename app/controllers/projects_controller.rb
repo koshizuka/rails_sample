@@ -7,7 +7,7 @@ class ProjectsController < ApplicationController
 
   def show
     @task = Task.new
-    @feed_items = @project.tasks.paginate(page: params[:page])
+    @feed_items = @project.tasks.order(:order).paginate(page: params[:page])
   end
 
   def new
@@ -57,6 +57,6 @@ class ProjectsController < ApplicationController
     end
 
     def project_params
-      params.require(:project).permit(:name, :task_id)
+      params.require(:project).permit(:name, :task_id, :start_date)
     end
 end

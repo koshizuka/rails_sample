@@ -11,12 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170720021357) do
+ActiveRecord::Schema.define(version: 20170914025504) do
+
+  create_table "dailies", force: :cascade do |t|
+    t.integer  "planed_time"
+    t.integer  "actual_time"
+    t.date     "the_date"
+    t.integer  "task_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "projects", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date     "start_date"
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -37,6 +47,9 @@ ActiveRecord::Schema.define(version: 20170720021357) do
     t.datetime "updated_at"
     t.string   "status"
     t.integer  "project_id"
+    t.integer  "planed_time"
+    t.integer  "actual_time"
+    t.integer  "order"
   end
 
   add_index "tasks", ["project_id"], name: "index_tasks_on_project_id"

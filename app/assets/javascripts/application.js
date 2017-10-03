@@ -9,11 +9,12 @@
 //
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
-//
 
 //= require jquery
-//= require jquery_ujs
 //= require _honoka.min
+//= require jquery.tablefix.min
 //= require jquery-fileupload/basic
+//= require jquery-ui.min
+//= require fixedsortable
 //= require dropzone
 //= require_tree .

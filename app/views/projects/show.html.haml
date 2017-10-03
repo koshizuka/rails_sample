@@ -1,46 +1,34 @@
 %p#notice= notice
 
-/ %p
-/   %b プロジェクト名
-/   = @project.name
+%h3
+  = @project.name
 
-- if @feed_items.any?
-  %h3 タスク一覧
-  %table.table.task_table
-    %thead
+%table.table.task_table{id: "sortable-table"}
+  %thead
+    - if @feed_items.any?
       %tr.task_table_head
-        %th.center-block.col-xs-1 担当者
-        %th.col-xs-2 内容
-        %th.col-xs-1
-        .col-xs-8
-        %th
-        %th
-        %th
-        %th
-        %th
-        %th
-        %th
-        %th
-        %th
-        %th
-        %th
-        %th
-        %th
-        %th
-        %th
-        %th
-        %th
-        %th
-        %th
-        %th
-    %tbody
+        %th.user-name{ rowspan: "2" } 担当者
+        %th.ticket-name{ rowspan: "2" }  内容
+        %th{ rowspan: "2" }  予定
+        %th.status{ rowspan: "2" }
+        - (@project.start_date..(@project.start_date + 55)).select{ |d| (1..5).include?(d.wday) }.each do |d|
+          %th.date
+            = d.strftime("%-m/%-d")
+      %tr.task_table_head
+        - (@project.start_date..(@project.start_date + 55)).select{ |d| (1..5).include?(d.wday) }.each do |d|
+          %th.day_of_week
+            = d.strftime("#{%w(日 月 火 水 木 金 土)[d.wday]}")
+  %tbody
+    - if @feed_items.any?
       = render partial: 'shared/feed_item', collection: @feed_items
   = will_paginate @feed_items
-
-= form_for @task, project_id: @project.id do |f|
-  = render 'shared/error_messages', object: f.object
-  .form-group
-    = f.text_area :content, placeholder: "タスクを入力してください", class: "form-control"
-  .form-group
-    = f.hidden_field :project_id, value: @project.id
-    = f.submit "登録する", class: "btn btn-primary pull-right"
+/ %button.btn-task-form{ "data-toggle" => "collapse", href: "#collapseSample1" }
+/   +
+/ .collapse{ id: "collapseSample1" }
+/   = form_for @task, project_id: @project.id do |f|
+/     = render 'shared/error_messages', object: f.object
+/     .form-group
+/       = f.text_area :content, placeholder: "タスクを入力してください", class: "form-control"
+/     .form-group
+/       = f.hidden_field :project_id, value: @project.id
+/       = f.submit "登録する", class: "btn btn-primary pull-right"

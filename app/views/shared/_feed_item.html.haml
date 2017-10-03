@@ -1,37 +1,24 @@
-/ %li.row{:id => "#{feed_item.id}"}
-%tr
-  %td.col-xs-1
+/ %tr{ class: "#{'working' if feed_item.working?} #{'done' if feed_item.done?}" }
+%tr{ class: "#{'working' if feed_item.working?} ", data: { task_id: feed_item.id } }
+  %td.task_td
     / = image_tag current_user.image, class: "thumnail"
     .user-name
       = link_to feed_item.user.name, feed_item.user
-  %td.col-xs-2
-    %span.content= feed_item.content
-  %td.col-xs-1
-    = button_to status_action(feed_item), change_status_project_task_path(id: feed_item.id, project_id: @project.id), class: "btn btn-sm btn-info pull-right"
-  .col-xs-8
-    %td.chart
-    %td.chart
-    %td.chart
-    %td.chart
-    %td.chart
-    %td.chart
-    %td.chart
-    %td.chart
-    %td.chart
-    %td.chart
-    %td.chart
-    %td.chart
-    %td.chart
-    %td.chart
-    %td.chart
-    %td.chart
-    %td.chart
-    %td.chart
-    %td.chart
-    %td.chart
-    / %span.timestamp
-    /   Posted #{time_ago_in_words(feed_item.created_at)} ago.
-    / - if current_user?(feed_item.user)
-    /   = link_to "削除", feed_item, method: :delete, |
-    /     data: { confirm: "You sure?" },               |
-    /     title: feed_item.content
+  %td
+    %span.content= link_to feed_item.content, edit_project_task_path(@project, feed_item)
+  %td
+    %input.planed_time{ type: "text", value: feed_item.planed_time }
+  %td.status
+    = button_to status_action(feed_item), change_status_project_task_path(id: feed_item.id, project_id: @project.id), class: "btn btn-sm btn-info pull-right btn-change-status"
+  /   - if current_user?(feed_item.user)
+  /     / = button_to "削除", feed_item, method: :delete, |
+  /     /   data: { confirm: "削除しますか？" },               |
+  /     /   title: feed_item.content, class: "btn btn-sm btn-info pull-right btn-change-status}
+  - (@project.start_date..(@project.start_date + 55)).select{ |d| (1..5).include?(d.wday) }.each do |d|
+    %td.chart{ contenteditable: "true", data: { task_id: feed_item.id } }
+      - if feed_item.dailies.find_by(the_date: d).try(:planed_time)
+        .plan
+          = feed_item.dailies.find_by(the_date: d).planed_time
+      - if feed_item.dailies.find_by(the_date: d).try(:actual_time)
+        .actual
+          = feed_item.dailies.find_by(the_date: d).actual_time
